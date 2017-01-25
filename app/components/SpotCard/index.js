@@ -16,7 +16,7 @@ class SpotCard extends React.PureComponent { // eslint-disable-line react/prefer
     const { spot, onShowSpot } = this.props;
     let imageUrl;
 
-    if (spot.hasOwnProperty("pictures") && spot.pictures.length > 0) {
+    if (Object.prototype.hasOwnProperty.call(spot, 'pictures') && spot.pictures.length > 0) {
       imageUrl = spot.pictures[0];
     }
 

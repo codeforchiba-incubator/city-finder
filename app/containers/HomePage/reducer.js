@@ -22,7 +22,7 @@ function homePageReducer(state = initialState, action) {
     case LOAD_SPOTS_SUCCESS:
       return state
         .set('loading', false)
-        .setIn(['spotData', 'repositories'], action.spots)
+        .setIn(['spotData', 'repositories'], action.spots);
     default:
       return state;
   }

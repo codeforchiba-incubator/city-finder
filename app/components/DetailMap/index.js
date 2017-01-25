@@ -6,12 +6,12 @@
 
 import React from 'react';
 
-import { Marker, TileLayer } from 'react-leaflet';
+import { Marker, Tooltip, TileLayer } from 'react-leaflet';
 import StyledMap from './styled-map';
 
 class DetailMap extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const position = [ this.props.lat, this.props.long ];
+    const position = [this.props.lat, this.props.long];
     const { label, address } = this.props;
     let content = (<div></div>);
 
@@ -19,10 +19,14 @@ class DetailMap extends React.PureComponent { // eslint-disable-line react/prefe
       content = (
         <StyledMap center={position} zoom={15}>
           <TileLayer
-            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <Marker position={position} />
+          <Marker position={position}>
+            <Tooltip>
+              <span>{address}</span>
+            </Tooltip>
+          </Marker>
         </StyledMap>
       );
     }

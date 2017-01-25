@@ -6,9 +6,7 @@
 
 import React from 'react';
 
-import H1 from './h1';
 import P from './p';
-
 
 class DetailText extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -16,6 +14,7 @@ class DetailText extends React.PureComponent { // eslint-disable-line react/pref
 
     return (
       <section>
+        <P>{title}</P>
         <P>{text}</P>
       </section>
     );

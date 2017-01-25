@@ -9,7 +9,7 @@ const selectSpotPage = () => (state) => state.get('spotPage');
  * Other specific selectors
  */
 const selectLoading = () => createSelector(
-  selectHome(),
+  selectSpotPage(),
   (state) => state.get('loading')
 );
 
@@ -22,7 +22,7 @@ const selectSpot = () => createSelector(
   (state) => state.get('spotData')
 );
 
-export default selectSpotPage;
+export default selectSpot;
 export {
   selectLoading,
 };

@@ -22,7 +22,9 @@ export class SpotPage extends React.PureComponent { // eslint-disable-line react
   render() {
     const { spot } = this.props;
 
-    let address, lat, long;
+    let address;
+    let lat;
+    let long;
 
     if (spot.location) {
       ({ address, lat, long } = spot.location);
@@ -39,16 +41,13 @@ export class SpotPage extends React.PureComponent { // eslint-disable-line react
 }
 
 SpotPage.propTypes = {
-  params: React.PropTypes.object,
   spot: React.PropTypes.object,
   onLoadSpots: React.PropTypes.func,
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    spot: selectSpot(state, props),
-  }
-};
+const mapStateToProps = (state, props) => ({
+  spot: selectSpot(state, props),
+});
 
 function mapDispatchToProps(dispatch) {
   return {

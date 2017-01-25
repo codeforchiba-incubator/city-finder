@@ -8,13 +8,9 @@ const selectHome = () => (state) => state.get('home');
 /**
  * Other specific selectors
  */
-const selectSpotId = (_, props) => {
-  return props.params.id;
-};
+const selectSpotId = (_, props) => props.params.id;
 
-const selectSpotList = (state) => {
-  return state.getIn(['home', 'spotData', 'repositories']);
-}
+const selectSpotList = (state) => state.getIn(['home', 'spotData', 'repositories']);
 
 const selectSpot = createSelector(
   [
@@ -23,10 +19,10 @@ const selectSpot = createSelector(
   ],
   (spots, id) => {
     if (spots) {
-      return spots.filter((spot) => spot.id == id)[0];
-    } else {
-      return {};
+      return spots.filter((spot) => spot.id.toString() === id)[0];
     }
+
+    return {};
   }
 );
 

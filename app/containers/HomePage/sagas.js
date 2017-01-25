@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga';
-import { take, call, put, fork, cancel } from 'redux-saga/effects';
+import { take, put, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { LOAD_SPOTS } from './constants';
@@ -7,15 +7,16 @@ import { spotsLoaded } from './actions';
 import spots from './data/spots.json';
 
 function adjustedSpots() {
-  return spots.map(spot => {
-    if (spot.hasOwnProperty("pictures") && spot.pictures.length > 0) {
-      spot.pictures = spot.pictures.map(p => {
+  return spots.map((spot) => {
+    if (Object.prototype.hasOwnProperty.call(spot, 'pictures') && spot.pictures.length > 0) {
+      // eslint-disable-next-line no-param-reassign
+      spot.pictures = spot.pictures.map((p) => {
         if (p.startsWith('http')) {
           return p;
-        } else {
-          return `http://drive.google.com/uc?export=view&id=${p}`;
         }
-      })
+
+        return `http://drive.google.com/uc?export=view&id=${p}`;
+      });
     }
 
     return spot;

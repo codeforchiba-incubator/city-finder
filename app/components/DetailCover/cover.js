@@ -5,7 +5,7 @@ const Cover = styled.div`
 
   height: 200px;
   background: center / cover;
-  background-image: url(${props => props.coverImage});
+  background-image: url(${(props) => props.coverImage});
 `;
 
 export default Cover;

@@ -5,7 +5,7 @@ const Li = styled.li`
 
   height: 200px;
   background: center / cover;
-  background-image: url(${props => props.coverImage});
+  background-image: url(${(props) => props.coverImage});
 `;
 
 export default Li;
