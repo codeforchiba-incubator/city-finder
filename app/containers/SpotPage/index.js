@@ -34,6 +34,7 @@ export class SpotPage extends React.PureComponent { // eslint-disable-line react
       <div>
         <DetailCover title={spot.title} sources={spot.pictures} />
         <DetailText title="説明" text={spot.description} />
+        <DetailText title="コメント" text={spot.comment} />
         <DetailMap label={spot.title} address={address} lat={lat} long={long} />
       </div>
     );
