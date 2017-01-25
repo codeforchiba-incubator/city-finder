@@ -10,15 +10,50 @@
  */
 
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
+import { createStructuredSelector } from 'reselect';
 
-export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+import { loadSpots } from './actions';
+import { selectSpots } from './selectors';
+
+import SpotCrown from 'components/SpotCrown';
+
+export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  componentWillMount() {
+    this.props.onLoadSpots();
+  }
+
   render() {
+    const { spots, onShowSpot } = this.props;
+
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div>
+        <SpotCrown spots={spots} onShowSpot={onShowSpot} />
+      </div>
     );
   }
 }
+
+HomePage.propTypes = {
+  spots: React.PropTypes.oneOfType([
+    React.PropTypes.array,
+    React.PropTypes.bool,
+  ]),
+  onLoadSpots: React.PropTypes.func,
+  onShowSpot: React.PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  spots: selectSpots(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onLoadSpots: () => dispatch(loadSpots()),
+    onShowSpot: (id) => dispatch(push(`/spots/${id}`)),
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
